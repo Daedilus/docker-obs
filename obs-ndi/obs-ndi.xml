@@ -7,7 +7,7 @@
   <MyIP>192.168.192.233</MyIP>
   <Shell>sh</Shell>
   <Privileged>false</Privileged>
-  <Support/>
+  <Support>https://forums.unraid.net/topic/114911-support-obs-ndi/</Support>
   <Project>https://github.com/patrickstigler/docker-obs-ndi</Project>
   <Overview>This container is based on bb12489/gui-docker &amp;amp;amp;amp; bb12489/docker-obs. The OBS with NDI is incorporated into the container and can be used to stream your desktop. The main reason for this fork is to update the container and add it to the unraid app store.&amp;amp;#xD;&#xD;
 &amp;amp;#xD;&#xD;
