@@ -8,7 +8,7 @@ EXPOSE 5901
 ENV VNC_PASSWD=123456
 # Make sure the dependencies are met
 RUN apt-get update \
-	&& apt install -y tigervnc-standalone-server fluxbox xterm git net-tools python python-numpy scrot wget software-properties-common vlc avahi-daemon \
+	&& apt install -y tigervnc-standalone-server fluxbox xterm git net-tools python python-numpy htop ffmpeg v4l2loopback-dkms scrot wget software-properties-common nvidia-driver-455 vlc avahi-daemon \
 	&& sed -i 's/geteuid/getppid/' /usr/bin/vlc \
 	&& add-apt-repository ppa:obsproject/obs-studio \
 	&& git clone --branch v1.0.0 --single-branch https://github.com/novnc/noVNC.git /opt/noVNC \
