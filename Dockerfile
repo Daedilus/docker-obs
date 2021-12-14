@@ -1,14 +1,22 @@
-FROM    ubuntu:latest
+FROM ghcr.io/linuxserver/baseimage-ubuntu:focal
+
 ARG DEBIAN_FRONTEND="noninteractive"
+
 # for the VNC connection
 EXPOSE 5900
+
 # for the browser VNC client
 EXPOSE 5901
+
 # Use environment variable to allow custom VNC passwords
 ENV VNC_PASSWD=123456
+
+#Add needed nvidia environment variables for https://github.com/NVIDIA/nvidia-docker
+ENV NVIDIA_DRIVER_CAPABILITIES="compute,video,utility"
+
 # Make sure the dependencies are met
 RUN apt-get update \
-	&& apt install -y tigervnc-standalone-server fluxbox xterm git net-tools python python-numpy htop ffmpeg v4l2loopback-dkms scrot wget software-properties-common nvidia-driver-460 vlc avahi-daemon \
+	&& apt install -y tigervnc-standalone-server fluxbox xterm git net-tools python python-numpy scrot wget software-properties-common vlc gavahi-daemon \
 	&& sed -i 's/geteuid/getppid/' /usr/bin/vlc \
 	&& add-apt-repository ppa:obsproject/obs-studio \
 	&& git clone --branch v1.0.0 --single-branch https://github.com/novnc/noVNC.git /opt/noVNC \
