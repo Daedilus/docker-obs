@@ -27,6 +27,10 @@ RUN apt-get update \
 	&& git clone --branch v1.0.0 --single-branch https://github.com/novnc/noVNC.git /opt/noVNC \
 	&& git clone --branch v0.8.0 --single-branch https://github.com/novnc/websockify.git /opt/noVNC/utils/websockify \
 	&& ln -s /opt/noVNC/vnc.html /opt/noVNC/index.html \
+	&& mkdir -p /config/obs-studio /root/.config/ \
+	&& ln -s /config/obs-studio/ /root/.config/obs-studio \
+	&& apt install -y obs-studio \
+	&& apt-get clean -y \
 # Copy various files to their respective places
 	&& wget -q -O /opt/container_startup.sh https://raw.githubusercontent.com/patrickstigler/docker-obs-ndi/master/container_startup.sh \
 	&& wget -q -O /opt/x11vnc_entrypoint.sh https://raw.githubusercontent.com/patrickstigler/docker-obs-ndi/master/x11vnc_entrypoint.sh \
@@ -34,12 +38,6 @@ RUN apt-get update \
 	&& wget -q -O /opt/startup_scripts/startup.sh https://raw.githubusercontent.com/patrickstigler/docker-obs-ndi/master/startup.sh \
 	&& wget -q -O /tmp/libndi4_4.5.1-1_amd64.deb https://github.com/Palakis/obs-ndi/releases/download/4.9.1/libndi4_4.5.1-1_amd64.deb \
 	&& wget -q -O /tmp/obs-ndi_4.9.1-1_amd64.deb https://github.com/Palakis/obs-ndi/releases/download/4.9.1/obs-ndi_4.9.1-1_amd64.deb 
-# Update apt for the new obs repository
-RUN apt-get update \
-	&& mkdir -p /config/obs-studio /root/.config/ \
-	&& ln -s /config/obs-studio/ /root/.config/obs-studio \
-	&& apt install -y obs-studio \
-	&& apt-get clean -y \
 # Download and install the plugins for NDI
 	&& dpkg -i /tmp/*.deb \
 	&& rm -rf /tmp/*.deb \
