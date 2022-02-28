@@ -16,6 +16,17 @@ ENV NVIDIA_DRIVER_CAPABILITIES="compute,video,utility"
 
 # Make sure the dependencies are met
 RUN apt-get update \
+	 echo "**** add Intel repo ****" && \
+	 curl -sL https://repositories.intel.com/graphics/intel-graphics.key | apt-key add - && \
+	 echo 'deb [arch=amd64] https://repositories.intel.com/graphics/ubuntu focal main' > /etc/apt/sources.list.d/intel.list && \
+	 echo "**** install runtime packages ****" && \
+	 apt-get update && \
+	 apt-get install -y \
+		jq \
+		intel-opencl-icd \
+		udev \
+		unrar \
+		wget && \
 	&& apt install -y tigervnc-standalone-server fluxbox avahi-daemon xterm git net-tools python python-numpy scrot wget software-properties-common vlc \
 	&& sed -i 's/geteuid/getppid/' /usr/bin/vlc \
 	&& add-apt-repository ppa:obsproject/obs-studio \
