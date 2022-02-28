@@ -21,13 +21,7 @@ RUN apt-get update \
 	 echo 'deb [arch=amd64] https://repositories.intel.com/graphics/ubuntu focal main' > /etc/apt/sources.list.d/intel.list && \
 	 echo "**** install runtime packages ****" && \
 	 apt-get update && \
-	 apt-get install -y \
-		jq \
-		intel-opencl-icd \
-		udev \
-		unrar \
-		wget && \
-	&& apt install -y tigervnc-standalone-server fluxbox avahi-daemon xterm git net-tools python python-numpy scrot wget software-properties-common vlc \
+	&& apt install -y tigervnc-standalone-server fluxbox avahi-daemon xterm git net-tools python python-numpy scrot wget software-properties-common vlc jq intel-opencl-icd udev unrar wget \
 	&& sed -i 's/geteuid/getppid/' /usr/bin/vlc \
 	&& add-apt-repository ppa:obsproject/obs-studio \
 	&& git clone --branch v1.0.0 --single-branch https://github.com/novnc/noVNC.git /opt/noVNC \
