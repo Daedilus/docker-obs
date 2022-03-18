@@ -15,7 +15,7 @@ ENV VNC_PASSWD=123456
 ENV NVIDIA_DRIVER_CAPABILITIES="compute,video,utility"
 
 # Make sure the dependencies are met
-RUN apt-get update \
+RUN apt-get update && \
 	 echo "**** add Intel repo ****" && \
 	 curl -sL https://repositories.intel.com/graphics/intel-graphics.key | apt-key add - && \
 	 echo 'deb [arch=amd64] https://repositories.intel.com/graphics/ubuntu focal main' > /etc/apt/sources.list.d/intel.list && \
