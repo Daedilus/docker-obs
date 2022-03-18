@@ -43,7 +43,7 @@ RUN apt-get update \
 	&& rm -rf /tmp/*.deb \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& chmod +x /opt/*.sh \
-	&& chmod +x /opt/startup_scripts/*.sh \
+	&& chmod +x /opt/startup_scripts/*.sh 
 	 
 # Add menu entries to the container
 RUN echo "?package(bash):needs=\"X11\" section=\"DockerCustom\" title=\"OBS Screencast\" command=\"obs\"" >> /usr/share/menu/custom-docker \
