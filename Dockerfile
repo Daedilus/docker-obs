@@ -16,12 +16,7 @@ ENV NVIDIA_DRIVER_CAPABILITIES="compute,video,utility"
 
 # Make sure the dependencies are met
 RUN apt-get update && \
-	 echo "**** add Intel repo ****" && \
-	 curl -sL https://repositories.intel.com/graphics/intel-graphics.key | apt-key add - && \
-	 echo 'deb [arch=amd64] https://repositories.intel.com/graphics/ubuntu focal main' > /etc/apt/sources.list.d/intel.list && \
-	 echo "**** install runtime packages ****" && \
-	 apt-get update \
-	&& apt install -y tigervnc-standalone-server fluxbox avahi-daemon xterm git net-tools python python-numpy scrot wget software-properties-common vlc jq intel-opencl-icd udev unrar wget \
+	&& apt install -y tigervnc-standalone-server fluxbox avahi-daemon xterm git curl net-tools python python-numpy scrot wget software-properties-common vlc jq intel-opencl-icd udev unrar wget \
 	&& sed -i 's/geteuid/getppid/' /usr/bin/vlc \
 	&& add-apt-repository ppa:obsproject/obs-studio \
 	&& git clone --branch v1.0.0 --single-branch https://github.com/novnc/noVNC.git /opt/noVNC \
@@ -30,6 +25,11 @@ RUN apt-get update && \
 	&& mkdir -p /config/obs-studio /root/.config/ \
 	&& ln -s /config/obs-studio/ /root/.config/obs-studio \
 	&& apt install -y obs-studio \
+	&& echo "**** add Intel repo ****" \
+	&& curl -sL https://repositories.intel.com/graphics/intel-graphics.key | apt-key add - \
+	&& echo 'deb [arch=amd64] https://repositories.intel.com/graphics/ubuntu focal main' > /etc/apt/sources.list.d/intel.list \
+	&& echo "**** install runtime packages ****" \
+	&& apt-get update \
 	&& apt-get clean -y \
 # Copy various files to their respective places
 	&& wget -q -O /opt/container_startup.sh https://raw.githubusercontent.com/patrickstigler/docker-obs-ndi/master/container_startup.sh \
