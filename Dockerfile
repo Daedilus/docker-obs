@@ -20,7 +20,7 @@ RUN apt-get update \
 	 curl -sL https://repositories.intel.com/graphics/intel-graphics.key | apt-key add - && \
 	 echo 'deb [arch=amd64] https://repositories.intel.com/graphics/ubuntu focal main' > /etc/apt/sources.list.d/intel.list && \
 	 echo "**** install runtime packages ****" && \
-	 apt-get update && \
+	 apt-get update \
 	&& apt install -y tigervnc-standalone-server fluxbox avahi-daemon xterm git net-tools python python-numpy scrot wget software-properties-common vlc jq intel-opencl-icd udev unrar wget \
 	&& sed -i 's/geteuid/getppid/' /usr/bin/vlc \
 	&& add-apt-repository ppa:obsproject/obs-studio \
