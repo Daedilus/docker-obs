@@ -15,7 +15,7 @@ ENV VNC_PASSWD=123456
 ENV NVIDIA_DRIVER_CAPABILITIES="compute,video,utility"
 
 # Make sure the dependencies are met
-RUN apt-get update && \
+RUN apt-get update \
 	&& apt install -y tigervnc-standalone-server fluxbox avahi-daemon xterm git curl net-tools python python-numpy scrot wget software-properties-common vlc jq intel-opencl-icd udev unrar wget \
 	&& sed -i 's/geteuid/getppid/' /usr/bin/vlc \
 	&& add-apt-repository ppa:obsproject/obs-studio \
@@ -43,7 +43,7 @@ RUN apt-get update && \
 	&& rm -rf /tmp/*.deb \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& chmod +x /opt/*.sh \
-	&& chmod +x /opt/startup_scripts/*.sh 
+	&& chmod +x /opt/startup_scripts/*.sh \
 	 
 # Add menu entries to the container
 RUN echo "?package(bash):needs=\"X11\" section=\"DockerCustom\" title=\"OBS Screencast\" command=\"obs\"" >> /usr/share/menu/custom-docker \
