@@ -1,3 +1,4 @@
+[![Build Status](https://drone.stigler.de/api/badges/patrickstigler/docker-obs-ndi/status.svg)](https://drone.stigler.de/patrickstigler/docker-obs-ndi)
 # Docker Open Broadcaster Software (OBS)
 This container is based on [bb12489/docker-obs](https://github.com/bb12489/docker-obs). The OBS with NDI is incorporated into the container and can be used to stream your desktop.
 The main reason for this fork is to update the container and add it to the unraid app store.
