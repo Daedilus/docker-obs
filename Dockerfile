@@ -8,6 +8,9 @@ EXPOSE 5900
 # for the browser VNC client
 EXPOSE 5901
 
+# for the obs-websocket plugin
+EXPOSE 4455
+
 # Use environment variable to allow custom VNC passwords
 ENV VNC_PASSWD=123456
 
@@ -38,7 +41,7 @@ RUN apt-get update \
 	&& wget -q -O /opt/startup_scripts/startup.sh https://raw.githubusercontent.com/patrickstigler/docker-obs-ndi/master/startup.sh \
 	&& wget -q -O /tmp/libndi4_4.5.1-1_amd64.deb https://github.com/Palakis/obs-ndi/releases/download/4.9.1/libndi4_4.5.1-1_amd64.deb \
 	&& wget -q -O /tmp/obs-ndi_4.9.1-1_amd64.deb https://github.com/Palakis/obs-ndi/releases/download/4.9.1/obs-ndi_4.9.1-1_amd64.deb \
-	&& wget -q -O /tmp/obs-websocket-5.0.1-Ubuntu64.deb https://github.com/obsproject/obs-websocket/releases/download/5.0.1/obs-websocket-5.0.1-Ubuntu64.deb \
+	
 # Download and install the plugins for NDI
 	&& dpkg -i /tmp/*.deb \
 	&& rm -rf /tmp/*.deb \
