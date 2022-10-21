@@ -1,5 +1,5 @@
 # Docker Open Broadcaster Software (OBS)
-This container is based on [bb12489/gui-docker](https://github.com/bb12489/gui-docker) & [bb12489/docker-obs](https://github.com/bb12489/docker-obs). The OBS with NDI is incorporated into the container and can be used to stream your desktop.
+This container is based on [bb12489/docker-obs](https://github.com/bb12489/docker-obs). The OBS with NDI is incorporated into the container and can be used to stream your desktop.
 The main reason for this fork is to update the container and add it to the unraid app store.
 
 Here is a screenshot:
