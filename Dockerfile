@@ -8,6 +8,9 @@ EXPOSE 5900
 # for the browser VNC client
 EXPOSE 5901
 
+# for the obs-websocket plugin
+EXPOSE 4455
+
 # Use environment variable to allow custom VNC passwords
 ENV VNC_PASSWD=123456
 
@@ -16,7 +19,7 @@ ENV NVIDIA_DRIVER_CAPABILITIES="compute,video,utility"
 
 # Make sure the dependencies are met
 RUN apt-get update \
-	&& apt install -y tigervnc-standalone-server fluxbox avahi-daemon xterm git build-essential cmake curl ffmpeg git libboost-dev libnss3 mesa-utils qtbase5-dev strace x11-xserver-utils net-tools python python-numpy scrot wget software-properties-common vlc jq intel-opencl-icd i965-va-driver-shaders intel-media-va-driver-non-free udev unrar wget \
+	&& apt install -y tigervnc-standalone-server fluxbox avahi-daemon xterm git build-essential cmake curl ffmpeg git libboost-dev libnss3 mesa-utils qtbase5-dev strace x11-xserver-utils net-tools python3 python3-numpy scrot wget software-properties-common vlc jq intel-opencl-icd i965-va-driver-shaders intel-media-va-driver-non-free udev unrar qt5-image-formats-plugins \
 	&& sed -i 's/geteuid/getppid/' /usr/bin/vlc \
 	&& add-apt-repository ppa:obsproject/obs-studio \
 	&& git clone --branch v1.0.0 --single-branch https://github.com/novnc/noVNC.git /opt/noVNC \
@@ -38,6 +41,7 @@ RUN apt-get update \
 	&& wget -q -O /opt/startup_scripts/startup.sh https://raw.githubusercontent.com/patrickstigler/docker-obs-ndi/master/startup.sh \
 	&& wget -q -O /tmp/libndi4_4.5.1-1_amd64.deb https://github.com/Palakis/obs-ndi/releases/download/4.9.1/libndi4_4.5.1-1_amd64.deb \
 	&& wget -q -O /tmp/obs-ndi_4.9.1-1_amd64.deb https://github.com/Palakis/obs-ndi/releases/download/4.9.1/obs-ndi_4.9.1-1_amd64.deb \
+	
 # Download and install the plugins for NDI
 	&& dpkg -i /tmp/*.deb \
 	&& rm -rf /tmp/*.deb \
