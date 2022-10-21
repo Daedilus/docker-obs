@@ -8,7 +8,7 @@ Here is a screenshot:
 # To run
 You can start the container with:
 
-`docker run --shm-size=256m -it -p 5900:5900 -p 5901:5901 -e VNC_PASSWD=123456 patrickstigler/docker-obs-ndi:latest`
+`docker run --shm-size=256m -it -p 5900:5900 -p 5901:5901 -p 4455:4455 -e VNC_PASSWD=123456 patrickstigler/docker-obs-ndi:latest`
 
 The shm-size argument is to make sure that the webclient does not run out of shared memory and crash. You can change the default VNC password of '123456' on the docker run command to whatever you wish.
 
