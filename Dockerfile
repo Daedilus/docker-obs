@@ -22,8 +22,8 @@ RUN apt-get update \
 	&& apt install -y tigervnc-standalone-server fluxbox avahi-daemon xterm git build-essential cmake curl ffmpeg git libboost-dev libnss3 mesa-utils qtbase5-dev strace x11-xserver-utils net-tools python3 python3-numpy scrot wget software-properties-common vlc jq intel-opencl-icd i965-va-driver-shaders intel-media-va-driver-non-free udev unrar qt5-image-formats-plugins \
 	&& sed -i 's/geteuid/getppid/' /usr/bin/vlc \
 	&& add-apt-repository ppa:obsproject/obs-studio \
-	&& git clone --branch v1.0.0 --single-branch https://github.com/novnc/noVNC.git /opt/noVNC \
-	&& git clone --branch v0.8.0 --single-branch https://github.com/novnc/websockify.git /opt/noVNC/utils/websockify \
+	&& git clone --branch v1.3.0 --single-branch https://github.com/novnc/noVNC.git /opt/noVNC \
+	&& git clone --branch v0.10.0 --single-branch https://github.com/novnc/websockify.git /opt/noVNC/utils/websockify \
 	&& ln -s /opt/noVNC/vnc.html /opt/noVNC/index.html \
 	&& mkdir -p /config/obs-studio /root/.config/ \
 	&& ln -s /config/obs-studio/ /root/.config/obs-studio \
