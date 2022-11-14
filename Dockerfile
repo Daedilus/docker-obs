@@ -19,7 +19,7 @@ ENV NVIDIA_DRIVER_CAPABILITIES="compute,video,utility"
 
 # Make sure the dependencies are met
 RUN apt-get update \
-	&& apt install -y tigervnc-standalone-server fluxbox avahi-daemon xterm git build-essential cmake curl ffmpeg git libboost-dev libnss3 mesa-utils qtbase5-dev strace x11-xserver-utils net-tools python3 python3-numpy scrot wget software-properties-common vlc jq snap intel-opencl-icd i965-va-driver-shaders intel-media-va-driver-non-free udev unrar qt5-image-formats-plugins \
+	&& apt install -y tigervnc-standalone-server fluxbox avahi-daemon xterm git build-essential cmake curl ffmpeg git libboost-dev libnss3 mesa-utils qtbase5-dev strace x11-xserver-utils net-tools python3 python3-numpy scrot wget software-properties-common vlc jq snapd intel-opencl-icd i965-va-driver-shaders intel-media-va-driver-non-free udev unrar qt5-image-formats-plugins \
 	&& sed -i 's/geteuid/getppid/' /usr/bin/vlc \
 	&& add-apt-repository ppa:obsproject/obs-studio \
 	&& mkdir -p /config/obs-studio /root/.config/ \
