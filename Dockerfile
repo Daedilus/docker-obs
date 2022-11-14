@@ -44,7 +44,7 @@ RUN apt-get update \
 	&& rm -rf /tmp/*.deb \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& chmod +x /opt/*.sh \
-	&& chmod +x /opt/startup_scripts/*.sh 
+	&& chmod +x /opt/startup_scripts/*.sh \
 
 # Install noVNC
 	&& snap install novnc	 
