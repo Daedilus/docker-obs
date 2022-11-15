@@ -46,10 +46,12 @@ RUN apt-get update \
 	&& chmod +x /opt/*.sh \
 	&& chmod +x /opt/startup_scripts/*.sh \
 
-# Install noVNC
-	&& snap install novnc	 
 # Add menu entries to the container
 RUN echo "?package(bash):needs=\"X11\" section=\"DockerCustom\" title=\"OBS Screencast\" command=\"obs\"" >> /usr/share/menu/custom-docker \
 	&& echo "?package(bash):needs=\"X11\" section=\"DockerCustom\" title=\"Xterm\" command=\"xterm -ls -bg black -fg white\"" >> /usr/share/menu/custom-docker && update-menus
+	
+# Install noVNC
+RUN snap install novnc	
+
 VOLUME ["/config"]
 ENTRYPOINT ["/opt/container_startup.sh"]
