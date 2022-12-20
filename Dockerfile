@@ -1,25 +1,22 @@
-FROM ubuntu:20.04
-
-ARG DEBIAN_FRONTEND="noninteractive"
+FROM accetto/ubuntu-vnc-xfce
 
 # for the VNC connection
-EXPOSE 5900
-
+EXPOSE 5901  
 # for the browser VNC client
-EXPOSE 5901
-
+EXPOSE 6901 
 # for the obs-websocket plugin
 EXPOSE 4455
 
+
 # Use environment variable to allow custom VNC passwords
-ENV VNC_PASSWD=123456
+ENV VNC_PASSWD=headless
 
 #Add needed nvidia environment variables for https://github.com/NVIDIA/nvidia-docker
 ENV NVIDIA_DRIVER_CAPABILITIES="compute,video,utility"
 
 # Make sure the dependencies are met
 RUN apt-get update \
-	&& apt install -y tigervnc-standalone-server fluxbox avahi-daemon xterm git build-essential cmake curl ffmpeg git libboost-dev libnss3 mesa-utils qtbase5-dev strace x11-xserver-utils net-tools python3 python3-numpy scrot wget software-properties-common vlc jq intel-opencl-icd i965-va-driver-shaders intel-media-va-driver-non-free udev unrar novnc qt5-image-formats-plugins \
+	&& apt install -y fluxbox avahi-daemon xterm git build-essential cmake curl ffmpeg git libboost-dev libnss3 mesa-utils qtbase5-dev strace x11-xserver-utils net-tools python3 python3-numpy scrot wget software-properties-common vlc jq intel-opencl-icd i965-va-driver-shaders intel-media-va-driver-non-free udev unrar websockify qt5-image-formats-plugins \
 	&& sed -i 's/geteuid/getppid/' /usr/bin/vlc \
 	&& add-apt-repository ppa:obsproject/obs-studio \
 	&& mkdir -p /config/obs-studio /root/.config/ \
