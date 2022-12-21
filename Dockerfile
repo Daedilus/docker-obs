@@ -14,6 +14,8 @@ ENV VNC_PASSWD=headless
 #Add needed nvidia environment variables for https://github.com/NVIDIA/nvidia-docker
 ENV NVIDIA_DRIVER_CAPABILITIES="compute,video,utility"
 
+RUN apt --fix-broken install
+
 # Make sure the dependencies are met
 RUN apt-get update \
 	&& apt install -y fluxbox avahi-daemon xterm git build-essential cmake curl ffmpeg git libboost-dev libnss3 mesa-utils qtbase5-dev strace x11-xserver-utils net-tools python3 python3-numpy scrot wget software-properties-common vlc jq udev unrar qt5-image-formats-plugins \
