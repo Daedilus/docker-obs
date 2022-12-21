@@ -42,7 +42,7 @@ RUN echo headless | sudo -S -k apt-get update \
 
 # Add menu entries to the container
 RUN echo headless | sudo -S -k echo "?package(bash):needs=\"X11\" section=\"DockerCustom\" title=\"OBS Screencast\" command=\"obs\"" >> /usr/share/menu/custom-docker \
-	&& echo "?package(bash):needs=\"X11\" section=\"DockerCustom\" title=\"Xterm\" command=\"xterm -ls -bg black -fg white\"" >> /usr/share/menu/custom-docker && update-menus
+	&& echo headless | sudo -S -k echo "?package(bash):needs=\"X11\" section=\"DockerCustom\" title=\"Xterm\" command=\"xterm -ls -bg black -fg white\"" >> /usr/share/menu/custom-docker && update-menus
 	
 
 VOLUME ["/config"]
