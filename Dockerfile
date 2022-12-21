@@ -15,7 +15,7 @@ ENV VNC_PASSWD=headless
 ENV NVIDIA_DRIVER_CAPABILITIES="compute,video,utility"
 
 # Make sure the dependencies are met
-RUN sudo apt-get update \
+RUN sudo -S apt-get update \
 	&& apt install -y --fix-broken fluxbox avahi-daemon xterm git build-essential cmake curl ffmpeg git libboost-dev libnss3 mesa-utils qtbase5-dev strace x11-xserver-utils net-tools python3 python3-numpy scrot wget software-properties-common vlc jq udev unrar qt5-image-formats-plugins \
 	&& sed -i 's/geteuid/getppid/' /usr/bin/vlc \
 	&& add-apt-repository ppa:obsproject/obs-studio \
@@ -41,7 +41,7 @@ RUN sudo apt-get update \
 	&& chmod +x /opt/startup_scripts/*.sh
 
 # Add menu entries to the container
-RUN sudo echo "?package(bash):needs=\"X11\" section=\"DockerCustom\" title=\"OBS Screencast\" command=\"obs\"" >> /usr/share/menu/custom-docker \
+RUN sudo -S echo "?package(bash):needs=\"X11\" section=\"DockerCustom\" title=\"OBS Screencast\" command=\"obs\"" >> /usr/share/menu/custom-docker \
 	&& echo "?package(bash):needs=\"X11\" section=\"DockerCustom\" title=\"Xterm\" command=\"xterm -ls -bg black -fg white\"" >> /usr/share/menu/custom-docker && update-menus
 	
 
