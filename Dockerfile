@@ -16,7 +16,7 @@ ENV NVIDIA_DRIVER_CAPABILITIES="compute,video,utility"
 
 # Make sure the dependencies are met
 RUN echo headless | sudo -S -k apt-get update \
-	&& echo headless | sudo -S -k apt install -y --fix-broken fluxbox avahi-daemon xterm git build-essential cmake curl ffmpeg git libboost-dev libnss3 mesa-utils qtbase5-dev strace x11-xserver-utils net-tools python3 python3-numpy scrot wget software-properties-common vlc jq udev unrar qt5-image-formats-plugins \
+	&& echo headless | sudo -S -k apt install -y --fix-broken avahi-daemon xterm git build-essential cmake curl ffmpeg git libboost-dev libnss3 mesa-utils qtbase5-dev strace x11-xserver-utils net-tools python3 python3-numpy scrot wget software-properties-common vlc jq udev unrar qt5-image-formats-plugins \
 	&& echo headless | sudo -S -k sed -i 's/geteuid/getppid/' /usr/bin/vlc \
 	&& echo headless | sudo -S -k add-apt-repository ppa:obsproject/obs-studio \
 	&& echo headless | sudo -S -k mkdir -p /config/obs-studio /root/.config/ \
@@ -39,8 +39,6 @@ RUN echo headless | sudo -S -k apt-get update \
 	&& echo headless | sudo -S -k rm -rf /var/lib/apt/lists/* \
 	&& echo headless | sudo -S -k chmod +x /opt/*.sh \
 	&& echo headless | sudo -S -k chmod +x /opt/startup_scripts/*.sh
-
-
-
+	
 VOLUME ["/config"]
 ENTRYPOINT ["/opt/container_startup.sh"]
