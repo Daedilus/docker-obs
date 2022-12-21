@@ -41,4 +41,3 @@ RUN echo headless | sudo -S -k apt-get update \
 	&& echo headless | sudo -S -k chmod +x /opt/startup_scripts/*.sh
 	
 VOLUME ["/config"]
-ENTRYPOINT ["/opt/container_startup.sh"]
