@@ -40,10 +40,7 @@ RUN echo headless | sudo -S -k apt-get update \
 	&& echo headless | sudo -S -k chmod +x /opt/*.sh \
 	&& echo headless | sudo -S -k chmod +x /opt/startup_scripts/*.sh
 
-# Add menu entries to the container
-RUN echo headless | sudo -S -k echo "?package(bash):needs=\"X11\" section=\"DockerCustom\" title=\"OBS Screencast\" command=\"obs\"" >> /usr/share/menu/custom-docker \
-	&& echo headless | sudo -S -k echo "?package(bash):needs=\"X11\" section=\"DockerCustom\" title=\"Xterm\" command=\"xterm -ls -bg black -fg white\"" >> /usr/share/menu/custom-docker && update-menus
-	
+
 
 VOLUME ["/config"]
 ENTRYPOINT ["/opt/container_startup.sh"]
